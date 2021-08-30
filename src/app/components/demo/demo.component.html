@@ -1,0 +1,20 @@
+<h2>Demo of Angular Stuff</h2>
+
+<h3>Binding Expressions</h3>
+<p>Adding stuff {{ 2 + 2 }}</p>
+<p>Binding to a field {{ info }}</p>
+
+
+<h3>Looping</h3>
+<ol>
+  <li *ngFor="let item of todoList">
+    {{ item }}
+  </li>
+</ol>
+
+<h3>Adding Things</h3>
+<p>Note: This is not accessible. Not for real world.</p>
+<div>
+  <input #newThing>
+  <button (click)="addThingToList(newThing.value)">Click Me!</button>
+</div>
