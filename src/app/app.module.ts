@@ -9,7 +9,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ShoppingComponent } from './components/shopping/shopping.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { ShoppingEntryComponent } from './components/shopping-entry/shopping-entry.component';
-
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { ShoppingEntryComponent } from './components/shopping-entry/shopping-ent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

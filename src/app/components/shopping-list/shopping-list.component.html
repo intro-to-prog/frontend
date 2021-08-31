@@ -1,1 +1,8 @@
-<p>shopping-list works!</p>
+<ul class="list-unstyled">
+  <li class="alert alert-info"
+      *ngFor="let item of items">
+    <span>{{ item.description }}</span>
+    <button (click)="markPurchased(item)"
+            class="btn btn-sm btn-danger">X</button>
+  </li>
+</ul>

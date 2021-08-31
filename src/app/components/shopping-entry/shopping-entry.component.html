@@ -1,1 +1,17 @@
-<p>shopping-entry works!</p>
+<form [formGroup]="form"
+      (ngSubmit)="submit()">
+  <div class="form-group">
+    <label for="item">Item</label>
+    <input class="form-control"
+           type="text"
+           formControlName="description"
+           id="item">
+    <div class="alert alert-danger"
+         *ngIf="description?.errors && (description?.touched || description?.dirty)">
+      <p *ngIf="description?.errors?.required">This is Required</p>
+      <p *ngIf="description?.errors?.maxlength">That is way too long. Slow your roll.</p>
+    </div>
+  </div>
+  <button type="submit"
+          class="btn btn-primary">Add This Item</button>
+</form>

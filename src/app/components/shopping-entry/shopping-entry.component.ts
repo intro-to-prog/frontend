@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-entry',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingEntryComponent implements OnInit {
 
-  constructor() { }
+
+  form: FormGroup = this.formBuilder.group({
+    description: ['', [Validators.required, Validators.maxLength(400)]]
+  });
+  constructor(private formBuilder: FormBuilder) { }
+
+  get description() { return this.form.get('description'); }
 
   ngOnInit(): void {
   }
 
+  submit() {
+    if (this.form.valid) {
+      console.log(this.form.value);
+    } else {
+      console.log(`There are errors!`);
+    }
+  }
 }
