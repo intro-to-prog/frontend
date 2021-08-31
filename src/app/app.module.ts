@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { DemoComponent } from './components/demo/demo.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
+import { ShoppingComponent } from './components/shopping/shopping.component';
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
+import { ShoppingEntryComponent } from './components/shopping-entry/shopping-entry.component';
 
 
 @NgModule({
@@ -13,7 +16,10 @@ import { NavComponent } from './components/nav/nav.component';
     AppComponent,
     DemoComponent,
     HomeComponent,
-    NavComponent
+    NavComponent,
+    ShoppingComponent,
+    ShoppingListComponent,
+    ShoppingEntryComponent
   ],
   imports: [
     BrowserModule,

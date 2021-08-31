@@ -1,0 +1,10 @@
+
+### Get The Weather
+GET http://localhost:1337/weatherforecast HTTP/1.1
+
+
+### Get The Status
+
+GET http://localhost:1337/status HTTP/1.1
+Accept: "application/json"
+
