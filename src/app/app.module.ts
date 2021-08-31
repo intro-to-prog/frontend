@@ -10,7 +10,9 @@ import { ShoppingComponent } from './components/shopping/shopping.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { ShoppingEntryComponent } from './components/shopping-entry/shopping-entry.component';
 import { ReactiveFormsModule } from "@angular/forms";
-
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { reducers } from './reducers';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { ReactiveFormsModule } from "@angular/forms";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]
