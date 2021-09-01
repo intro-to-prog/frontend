@@ -13,6 +13,9 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { reducers } from './reducers';
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { ShoppingEffects } from './effects/shopping.effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,9 @@ import { reducers } from './reducers';
     AppRoutingModule,
     ReactiveFormsModule,
     StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    HttpClientModule,
+    EffectsModule.forRoot([ShoppingEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
