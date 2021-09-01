@@ -24,7 +24,8 @@ const reducerFunction = createReducer(
       id: a.payload.id
     }
   }, s)),
-  on(actions.shoppingItemDeleted, (s, a) => adapter.removeOne(a.payload.id, s))
+  on(actions.shoppingItemDeleted, (s, a) => adapter.removeOne(a.payload.id, s)),
+  on(actions.shoppingItemCreationFailed, (s,a) => adapter.removeOne(a.payload.id, s))
 );
 
 export function reducer(state: ShoppingState = initialState, action: Action): ShoppingState {

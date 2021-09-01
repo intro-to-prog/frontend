@@ -40,6 +40,11 @@ export const shoppingItemCreated = createAction(
   props<{ temporaryId: string, payload: ShoppingEntity }>()
 );
 
+export const shoppingItemCreationFailed = createAction(
+  '[shopping] shopping item creation failed',
+  props<{ payload: ShoppingEntity, errorMessage: string }>()
+);
+
 interface AddShoppingItem {
   description: string
 }

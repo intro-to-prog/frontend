@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { environment } from '../../environments/environment'; // NEVER IMPORT ANY OTHER ENVIRONMENT BUT THIS ONE.
-import { map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import * as actions from '../actions/shopping.actions';
 import { ShoppingEntity } from '../reducers/shopping.reducer';
+import { of } from 'rxjs';
 @Injectable()
 export class ShoppingEffects {
 
@@ -26,7 +27,8 @@ export class ShoppingEffects {
       switchMap(originalTemporaryItem => this.client.post<ShoppingEntity>(this.apiUrl + '/shopping',
         { description: originalTemporaryItem.payload.description }) // send it to the server, gets back a ShoppingEntity with a "real" id
         .pipe(
-          map(payload => actions.shoppingItemCreated({ payload, temporaryId: originalTemporaryItem.payload.id })) // Turn that into an action
+          map(payload => actions.shoppingItemCreated({ payload, temporaryId: originalTemporaryItem.payload.id })),
+          catchError(r => of(actions.shoppingItemCreationFailed({ payload: originalTemporaryItem.payload, errorMessage: 'Cannot Add This Item' })))
         )
       )
     ), { dispatch: true }

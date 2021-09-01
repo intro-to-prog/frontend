@@ -13,3 +13,23 @@
   }
 }
 ```
+
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "description": "Tortillas"
+    },
+    {
+      "id": 2,
+      "description": "Taco Sauce"
+    }
+  ]
+}
+
+
+
+
+```
