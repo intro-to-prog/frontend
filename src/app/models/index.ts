@@ -1,4 +1,1 @@
-export interface ShoppingListItemModel {
-  id: string;
-  description: string;
-}
+export * from './shopping.models';

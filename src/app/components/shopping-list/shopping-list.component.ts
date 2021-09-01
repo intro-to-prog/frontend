@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { shoppingItemDeleted } from 'src/app/actions/shopping.actions';
 import { ShoppingListItemModel } from 'src/app/models';
 import { AppState, selectShoppingListItemModel } from 'src/app/reducers';
 
@@ -21,7 +22,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   markPurchased(item: ShoppingListItemModel) {
-    console.log(item);
+    this.store.dispatch(shoppingItemDeleted({ payload: item }));
   }
 
 }

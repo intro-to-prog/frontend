@@ -25,5 +25,8 @@ const { selectAll: selectShoppingItemEntityArray } = fromShopping.adapter.getSel
 // TODO a selector that returns an observable array of ShoppingListItemModel[]
 export const selectShoppingListItemModel = createSelector(
   selectShoppingItemEntityArray,
-  (shoppingEntities) => shoppingEntities as ShoppingListItemModel[]
+  (shoppingEntities) => shoppingEntities.map(item => ({
+    ...item,
+    isTemporary: item.id.toString().startsWith('TEMP')
+  } as ShoppingListItemModel))
 );

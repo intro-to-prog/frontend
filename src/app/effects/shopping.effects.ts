@@ -11,6 +11,15 @@ export class ShoppingEffects {
   readonly apiUrl = environment.apiUrl;
   tempId = 1;
 
+  // shoppingItemDeleted -> (make an api call.) -> NOTHING
+  markItemPurchased$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.shoppingItemDeleted),
+      switchMap(a => this.client.delete(this.apiUrl + '/shopping/' + a.payload.id))
+    )
+    , { dispatch: false }
+  )
+
   saveTemporaryShoppingItem$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.temporaryShoppingItemCreated), // only care about this.

@@ -1,6 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 import { ShoppingEntity } from '../reducers/shopping.reducer';
 
+
+
+export const shoppingItemDeleted = createAction(
+  '[shopping] shopping item deleted',
+  props<{ payload: ShoppingEntity }>()
+);
+
+
+
 // Commands (I need something to happen - and I'm sort of expecting a response)
 export const loadTheShoppingList = createAction(
   '[shopping] load the shopping list'

@@ -2,7 +2,10 @@
   <li class="alert alert-info"
       *ngFor="let item of items$ | async">
     <span>{{ item.description }}</span>
-    <button (click)="markPurchased(item)"
+    <button *ngIf="!item.isTemporary"
+            (click)="markPurchased(item)"
             class="btn btn-sm btn-danger">X</button>
+    <span *ngIf="item.isTemporary"
+          class="alert alert-info">Saving your item...</span>
   </li>
 </ul>
