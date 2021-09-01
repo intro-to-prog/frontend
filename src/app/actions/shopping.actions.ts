@@ -14,11 +14,22 @@ export const loadTheShoppingListSucceeded = createAction(
 
 
 // Event (this happened. Somebody might care)
+// the ui (shopping-entry component) sends this.
 export const shoppingItemAdded = createAction(
   '[shopping] a shopping item was added',
   props<{ payload: AddShoppingItem }>()
 );
 
+// this one is created by our shopping-effect so we can tell a little lie
+export const temporaryShoppingItemCreated = createAction(
+  '[shopping] temporary shopping item created',
+  props<{ payload: ShoppingEntity }>()
+);
+
+export const shoppingItemCreated = createAction(
+  '[shopping] shopping item created',
+  props<{ temporaryId: string, payload: ShoppingEntity }>()
+);
 
 interface AddShoppingItem {
   description: string

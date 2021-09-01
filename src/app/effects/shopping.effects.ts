@@ -9,6 +9,29 @@ import { ShoppingEntity } from '../reducers/shopping.reducer';
 export class ShoppingEffects {
 
   readonly apiUrl = environment.apiUrl;
+  tempId = 1;
+
+  saveTemporaryShoppingItem$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.temporaryShoppingItemCreated), // only care about this.
+      switchMap(originalTemporaryItem => this.client.post<ShoppingEntity>(this.apiUrl + '/shopping',
+        { description: originalTemporaryItem.payload.description }) // send it to the server, gets back a ShoppingEntity with a "real" id
+        .pipe(
+          map(payload => actions.shoppingItemCreated({ payload, temporaryId: originalTemporaryItem.payload.id })) // Turn that into an action
+        )
+      )
+    ), { dispatch: true }
+  );
+
+
+  // shoppingItemAdded -> (TEMP id created) -> temporaryShoppingItemCreated
+  createTemporaryShoppingItem$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.shoppingItemAdded),
+      map(item => item.payload.description),
+      map((description) => actions.temporaryShoppingItemCreated({ payload: { id: 'TEMP' + this.tempId++, description } }))
+    )
+  );
 
   // loadTheShoppingList -> (api call!) -> loadTheShoppingListSucceeded
 
