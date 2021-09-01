@@ -16,6 +16,7 @@ import { reducers } from './reducers';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { ShoppingEffects } from './effects/shopping.effects';
+import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { ShoppingEffects } from './effects/shopping.effects';
     NavComponent,
     ShoppingComponent,
     ShoppingListComponent,
-    ShoppingEntryComponent
+    ShoppingEntryComponent,
+    ErrorDisplayComponent
   ],
   imports: [
     BrowserModule,

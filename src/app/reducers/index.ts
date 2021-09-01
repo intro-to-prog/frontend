@@ -1,14 +1,17 @@
 import { createSelector } from '@ngrx/store';
 import { ShoppingListItemModel } from '../models';
 import * as fromShopping from './shopping.reducer'
+import * as fromErrors from './error.reducer';
 
 export interface AppState {
-  shopping: fromShopping.ShoppingState
+  shopping: fromShopping.ShoppingState,
+  errors: fromErrors.ErrorState
 }
 
 
 export const reducers = {
-  shopping: fromShopping.reducer
+  shopping: fromShopping.reducer,
+  errors: fromErrors.reducer
 }
 
 
@@ -16,6 +19,7 @@ export const reducers = {
 
 // Helpers
 const selectShoppingData = (state: AppState) => state.shopping;
+const selectErrorData = (state: AppState) => state.errors;
 
 // const selectShoppingItemEntityArray = fromShopping.adapter.getSelectors(selectShoppingData).selectAll;
 const { selectAll: selectShoppingItemEntityArray } = fromShopping.adapter.getSelectors(selectShoppingData);
@@ -30,3 +34,13 @@ export const selectShoppingListItemModel = createSelector(
     isTemporary: item.id.toString().startsWith('TEMP')
   } as ShoppingListItemModel))
 );
+
+export const selectHasErrors = createSelector(
+  selectErrorData,
+  d => d.hasError
+)
+
+export const selectErrorMessage = createSelector(
+  selectErrorData,
+  d => d.message
+)

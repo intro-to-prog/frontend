@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment'; // NEVER IMPORT AN
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import * as actions from '../actions/shopping.actions';
+import * as errorActions from '../actions/error.actions';
 import { ShoppingEntity } from '../reducers/shopping.reducer';
 import { of } from 'rxjs';
 @Injectable()
@@ -11,6 +12,14 @@ export class ShoppingEffects {
 
   readonly apiUrl = environment.apiUrl;
   tempId = 1;
+
+  displayError$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.shoppingItemCreationFailed),
+      map(a => errorActions.displayError({ payload: a.errorMessage }))
+    )
+
+  );
 
   // shoppingItemDeleted -> (make an api call.) -> NOTHING
   markItemPurchased$ = createEffect(() =>
