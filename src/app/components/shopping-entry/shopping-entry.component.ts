@@ -25,8 +25,6 @@ export class ShoppingEntryComponent implements OnInit {
 
   submit(el: HTMLInputElement) {
     if (this.form.valid) {
-
-
       this.store.dispatch(actions.shoppingItemAdded({
         payload: {
           description: this.description?.value
