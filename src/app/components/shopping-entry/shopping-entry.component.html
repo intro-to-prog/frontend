@@ -1,9 +1,11 @@
 <form [formGroup]="form"
-      (ngSubmit)="submit()">
+      (ngSubmit)="submit(focusMe)">
   <div class="form-group">
     <label for="item">Item</label>
     <input class="form-control"
            type="text"
+           #focusMe
+           autofocus
            formControlName="description"
            id="item">
     <div class="alert alert-danger"
